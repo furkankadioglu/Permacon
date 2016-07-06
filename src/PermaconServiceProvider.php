@@ -3,13 +3,16 @@
 /************************
 *
 *	Rys - Furkan Kadıoğlu
-*	May - 2016	
+*	July - 2016	
 *	http://github.com/furkankadioglu
 *
 *************************/
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\Application;
+
+use furkankadioglu\Permacon\Permacon;
 
 class PermaconServiceProvider extends ServiceProvider {
 
@@ -29,14 +32,6 @@ class PermaconServiceProvider extends ServiceProvider {
 
 	public function boot() {
 
-
-		/*
-		*	php artisan vendor:publish
-		*/
-
-
-
-
 		//	Publish Folders Generate
 		foreach((array)$this->publishFolders as $pf)
 		{
@@ -55,6 +50,16 @@ class PermaconServiceProvider extends ServiceProvider {
 	public function register() {
 		$this->files = new Filesystem;
 		$this->registerScanCommand();
+
+		$method = "singleton";
+		// Bind the manager as a singleton on the container.
+		$this->app->$method('permacon', function($app) {
+			
+			/**
+			 * Construct the actual manager.
+			 */
+			return new Permacon($app);
+		});
 	}
 
 	/**
