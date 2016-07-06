@@ -2,7 +2,7 @@
     "name": "furkankadioglu/permacon",
     "description": "Permanently Save and Set Config Variables For Laravel 5",
     "keywords": ["config", "permanently", "set", "laravel5", "laravel 5", "furkankadioglu"],
-    "homepage": "https://github.com/furkankadioglu/Modvel",
+    "homepage": "https://github.com/furkankadioglu/Permacon",
     "license": "MIT",
     "version": "0.1",
     "authors": [
@@ -17,7 +17,7 @@
   },
     "autoload": {
         "psr-4": {
-            "furkankadioglu\\Modvel\\": "src/"
+            "furkankadioglu\\Permacon\\": "src/"
         }
     },
      "minimum-stability": "stable"
