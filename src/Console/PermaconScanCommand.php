@@ -3,12 +3,13 @@
 /************************
 *
 *	Rys - Furkan Kadıoğlu
-*	May - 2016	
+*	July - 2016	
 *	http://github.com/furkankadioglu
 *
 *************************/
 
 use Illuminate\Console\Command;
+use Illuminate\Filesystem\Filesystem;
 
 class PermaconScanCommand extends Command {
 
@@ -21,11 +22,14 @@ class PermaconScanCommand extends Command {
 	{
 		$this->info('+ Scanning configration files');
 
-		$files = scandir(config_path());
+		$files = array_slice(scandir(config_path()), 2);
+
 
 		foreach($files as $file)
 		{
-			$this->info($file);
+			$this->info("Scanned and Generated Copy: ".$file);
+			$content = file_get_contents(config_path()."/".$file);
+			$save = file_put_contents(storage_path()."/permacon/".$file, $content);
 		}
 		
 	}
